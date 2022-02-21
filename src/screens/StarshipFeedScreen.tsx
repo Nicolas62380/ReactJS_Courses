@@ -1,13 +1,13 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView } from "react-native";
-
+import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView, Image } from "react-native";
 import Data from "../../api/data.json";
 
 const Card = ({ shipData }) => (
     <ScrollView style={styles.item}>
       <Text style={styles.model}>{shipData.model}</Text>
-      <Text style={styles.manufacturer}>{shipData.manufacturer}</Text>
-      <Text style={styles.manufacturer}>{shipData.hyperdrive_rating}</Text>
+      <Text style={styles.model}>{shipData.manufacturer}</Text>
+      <Text style={styles.model}>{shipData.hyperdrive_rating}</Text>
+      <Image style={styles.tinyLogo} source={require('../../assets/starships/deathstar.jpg')}/>
     </ScrollView>
 );  
 
@@ -39,6 +39,10 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     marginTop: 20,
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
   },
   item: {
     backgroundColor: '#f9c2ff',
