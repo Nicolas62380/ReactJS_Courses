@@ -4,7 +4,18 @@ import Data from "../../api/data.json";
 import { useStarships } from "../hooks/useStarships";
 import { StarshipCard } from "../components/StarshipCard";
 
+
+
 export const StarshipFeedScreen = () => {
+
+    const { isLoading,isError,data } = useStarships();
+
+    if (isLoading) {
+      return <Text> Loading </Text>
+    }
+    if (isError) {
+      return <Text> Error </Text>
+    }
 
     const renderItem = ({ item }:any) => { 
         return (
@@ -15,9 +26,9 @@ export const StarshipFeedScreen = () => {
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
         <FlatList 
-            data = {Data.results}
-            renderItem={renderItem}
-            keyExtractor={item => item.name}
+          data = {data.results}
+          renderItem={renderItem}
+          keyExtractor={item => item.name}
         />
       </View>
     </SafeAreaView>

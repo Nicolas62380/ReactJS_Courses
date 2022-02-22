@@ -10,10 +10,12 @@ const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    //<QueryClientProvider client={queryClient}></QueryClientProvider>
+    <QueryClientProvider client={queryClient}>
+      <StarshipFeedScreen />
+    </QueryClientProvider>
     //<LoginScreen />
     //<TermsScreen />
-    <StarshipFeedScreen />
+    
   );
 };
 
