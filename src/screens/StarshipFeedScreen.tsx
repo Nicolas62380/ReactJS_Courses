@@ -2,21 +2,13 @@ import React from "react";
 import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView, Image } from "react-native";
 import Data from "../../api/data.json";
 import { useStarships } from "../hooks/useStarships";
-
-const Card = ({ shipData } : any) => (
-    <ScrollView style={styles.item}>
-      <Text style={styles.model}>{shipData.model}</Text>
-      <Image style={styles.tinyLogo} source={require('../../assets/starships/deathstar.jpg')}/>
-      <Text style={styles.manufacturer}>{shipData.manufacturer}</Text>
-      <Text style={styles.hyperdrive_rating}>{shipData.hyperdrive_rating}</Text>
-    </ScrollView>
-);  
+import { StarshipCard } from "../components/StarshipCard";
 
 export const StarshipFeedScreen = () => {
 
     const renderItem = ({ item }:any) => { 
         return (
-        <Card shipData={item} />
+        <StarshipCard shipData={item} />
     )};
 
   return (
