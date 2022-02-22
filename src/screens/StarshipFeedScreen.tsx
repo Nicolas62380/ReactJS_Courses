@@ -1,19 +1,20 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView, Image } from "react-native";
 import Data from "../../api/data.json";
+import { useStarships } from "../hooks/useStarships";
 
-const Card = ({ shipData }) => (
+const Card = ({ shipData } : any) => (
     <ScrollView style={styles.item}>
       <Text style={styles.model}>{shipData.model}</Text>
-      <Text style={styles.model}>{shipData.manufacturer}</Text>
-      <Text style={styles.model}>{shipData.hyperdrive_rating}</Text>
       <Image style={styles.tinyLogo} source={require('../../assets/starships/deathstar.jpg')}/>
+      <Text style={styles.manufacturer}>{shipData.manufacturer}</Text>
+      <Text style={styles.hyperdrive_rating}>{shipData.hyperdrive_rating}</Text>
     </ScrollView>
 );  
 
 export const StarshipFeedScreen = () => {
 
-    const renderItem = ({ item }) => { 
+    const renderItem = ({ item }:any) => { 
         return (
         <Card shipData={item} />
     )};
@@ -39,18 +40,32 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
     marginTop: 20,
+    backgroundColor:"#eff0f5"
   },
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: '80%',
+    height: 250,
+    alignSelf:'center'
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#ffffff',
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal: "auto",
   },
   model: {
-      color:'black'
+      color:'black',
+      fontSize:25,
+      fontWeight:'bold',
+      textAlign:'center'
+  },
+  manufacturer: {
+    color:"black",
+    fontSize:15,
+    fontWeight:'normal'
+  },
+  hyperdrive_rating: {
+    color:"black",
+    fontSize: 15,
   }
 });
