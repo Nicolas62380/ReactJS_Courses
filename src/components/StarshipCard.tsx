@@ -1,50 +1,71 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
+import { Routes } from "../Navigation/Routes";
 
-export const StarshipCard = ({ shipData } : any) => (
+export const StarshipCard = ({ shipData }) => {
+  const navigation = useNavigation<any>();
+
+  /* function navigateToStarshipDetailScreen() {
+    navigation.navigate(Routes.STARSHIP_DETAIL_SCREEN);
+  } */
+
+  return (
     <View style={styles.item}>
-      <Text style={styles.model}>{shipData.model}</Text>
-      <Image style={styles.tinyLogo} source={require('../../assets/starships/deathstar.jpg')}/>
-      <Text style={styles.manufacturer}>{shipData.manufacturer}</Text>
-      <Text style={styles.hyperdrive_rating}>{shipData.hyperdrive_rating}</Text>
+      <Text style={styles.model_name}>{shipData.model}</Text>
+      {/* <Image
+            style={styles.tinyLogo}
+            source={require("../../assets/starships/CR90corvette.jpg")}
+          /> */}
+      <Text style={styles.model}>{shipData.manufacturer}</Text>
+      <Text style={styles.model}>{shipData.hyperdrive_rating}</Text>
     </View>
-);  
+  );
+};
 
 const styles = StyleSheet.create({
-    safeContainer: {
-      flex: 1,
-      marginTop: StatusBar.currentHeight || 0,
-    },
-    container: {
-      paddingHorizontal: 20,
-      marginTop: 20,
-      backgroundColor:"#eff0f5"
-    },
-    tinyLogo: {
-      width: '80%',
-      height: 250,
-      alignSelf:'center'
-    },
-    item: {
-      backgroundColor: '#ffffff',
-      padding: 20,
-      marginVertical: 8,
-      marginHorizontal: "auto",
-    },
-    model: {
-        color:'black',
-        fontSize:25,
-        fontWeight:'bold',
-        textAlign:'center'
-    },
-    manufacturer: {
-      color:"black",
-      fontSize:15,
-      fontWeight:'normal'
-    },
-    hyperdrive_rating: {
-      color:"black",
-      fontSize: 15,
-    }
-  });
+  //safeContainer: {},
+  //container: {},
+  /*tinyLogo: {
+    width: "60%",
+    height: 200,
+    alignSelf: "center",
+    marginTop: 20,
+    borderRadius: 2,
+  },*/
+  item: {
+    backgroundColor: "rgba(45,105,220, 0.18)",
+    paddingTop: 20,
+    paddingBottom: 20,
+    marginVertical: 10,
+    borderRadius: 1,
+    marginTop: 30,
+    borderWidth: 3,
+    borderColor: "#2D69DC",
+    marginLeft: 40,
+    marginRight: 40,
+  },
+  model_name: {
+    color: "#2D69DC",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 10,
+    textShadowColor: "#2D69DC",
+    fontSize: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+    paddingLeft: 8,
+    paddingRight: 8,
+  },
+  model: {
+    color: "white",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 10,
+    textShadowColor: "white",
+    fontSize: 15,
+    textAlign: "center",
+    marginTop: 5,
+    paddingLeft: 8,
+    paddingRight: 8,
+  },
+});

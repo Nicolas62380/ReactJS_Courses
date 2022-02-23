@@ -1,0 +1,28 @@
+2 things
+Props et State
+
+Hook -> useStarships
+const results = useStarships(); //API CALL 
+
+REACT CONTEXT:
+App.tsx 
+    QueryClientProvider
+        ThemeProvider
+            - Consumer 
+
+ROUTING
+
+APP.tsx 
+    <NavigatorContainer>
+        <Stack.Navigator>
+            Stack.screen name='Home' component={componentName}
+                LoginScreen
+                TermsScreen
+            Stack.screen name='BottomTabStack' component={componentName}
+                StarshipStack
+                    StarshipFeedScreen
+                    StarshipDetailscreen
+
+Utiliser Flowchart.fun 
+
+usrRoute() pour passer de la data d'un screen à un autre (même niveau)

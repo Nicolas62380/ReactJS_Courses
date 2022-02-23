@@ -1,35 +1,55 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, StatusBar, View, FlatList, ScrollView, Image } from "react-native";
-import Data from "../../api/data.json";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  StatusBar,
+  View,
+  FlatList,
+  ImageBackground,
+  TouchableOpacity,
+} from "react-native";
+
 import { useStarships } from "../hooks/useStarships";
 import { StarshipCard } from "../components/StarshipCard";
+import { Routes } from "../Navigation/Routes";
 
+export const StarshipFeedScreen = ({ navigation }) => {
+  const { isLoading, isError, data } = useStarships();
 
+  if (isLoading) {
+    return <Text> Loading </Text>;
+  }
+  if (isError) {
+    return <Text> Error </Text>;
+  }
 
-export const StarshipFeedScreen = () => {
+  function navigateToStarshipDetailScreen() {
+    navigation.navigate(Routes.STARSHIP_DETAIL_SCREEN);
+  }
 
-    const { isLoading,isError,data } = useStarships();
-
-    if (isLoading) {
-      return <Text> Loading </Text>
-    }
-    if (isError) {
-      return <Text> Error </Text>
-    }
-
-    const renderItem = ({ item }:any) => { 
-        return (
+  const renderItem = ({ item, navigation }: any) => {
+    return (
+      <TouchableOpacity onPress={navigateToStarshipDetailScreen}>
         <StarshipCard shipData={item} />
-    )};
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
-        <FlatList 
-          data = {data.results}
-          renderItem={renderItem}
-          keyExtractor={item => item.name}
-        />
+        <ImageBackground
+          resizeMode={"stretch"}
+          source={require("../../assets/background.jpg")}
+          style={styles.backgroundImage}
+        >
+          <FlatList
+            data={data.results}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.name}
+          />
+        </ImageBackground>
       </View>
     </SafeAreaView>
   );
@@ -38,37 +58,18 @@ export const StarshipFeedScreen = () => {
 const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  container: {
-    paddingHorizontal: 20,
-    marginTop: 20,
-    backgroundColor:"#eff0f5"
-  },
-  tinyLogo: {
-    width: '80%',
+  container: {},
+  /*tinyLogo: {
+    width: "80%",
     height: 250,
-    alignSelf:'center'
-  },
-  item: {
-    backgroundColor: '#ffffff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: "auto",
-  },
-  model: {
-      color:'black',
-      fontSize:25,
-      fontWeight:'bold',
-      textAlign:'center'
-  },
-  manufacturer: {
-    color:"black",
-    fontSize:15,
-    fontWeight:'normal'
-  },
-  hyperdrive_rating: {
-    color:"black",
-    fontSize: 15,
-  }
+    alignSelf: "center",
+    borderRadius: 20,
+  },*/
+  item: {},
+  model_name: {},
+  model: {},
+  backgroundImage: {},
 });
