@@ -24,13 +24,13 @@ export const StarshipFeedScreen = ({ navigation }) => {
     return <Text> Error </Text>;
   }
 
-  function navigateToStarshipDetailScreen() {
-    navigation.navigate(Routes.STARSHIP_DETAIL_SCREEN);
+  function onPress(item: any) {
+    navigation.navigate(Routes.STARSHIP_DETAIL_SCREEN, { item: item });
   }
 
-  const renderItem = ({ item, navigation }: any) => {
+  const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={navigateToStarshipDetailScreen}>
+      <TouchableOpacity onPress={() => onPress(item)}>
         <StarshipCard shipData={item} />
       </TouchableOpacity>
     );

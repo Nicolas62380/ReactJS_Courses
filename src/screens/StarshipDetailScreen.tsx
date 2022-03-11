@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from "react";
 import {
   StyleSheet,
@@ -9,19 +10,59 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { useStarships } from "../hooks/useStarships";
-import { StarshipCard } from "../components/StarshipCard";
-import { Routes } from "../Navigation/Routes";
+export const StarshipDetailScreen = (props: {
+  route: { params: { item: any } };
+}) => {
+  const { item } = props.route.params;
+  const x = item.name;
+  function imageMap(x: string) {
+    switch (x) {
+      case "CR90 corvette":
+        return require("../../assets/starships/CR90corvette.jpg");
+      case "Star Destroyer":
+        return require("../../assets/starships/stardestroyer.jpg");
+      case "Sentinel-class landing craft":
+        return require("../../assets/starships/sentinel-classlandingcraft.jpg");
+      case "Death Star":
+        return require("../../assets/starships/deathstar.jpg");
+      case "Millennium Falcon":
+        return require("../../assets/starships/millenniumfalcon.jpg");
+      case "Y-wing":
+        return require("../../assets/starships/y-wing.jpg");
+      case "X-wing":
+        return require("../../assets/starships/x-wing.jpg");
+      case "TIE Advanced x1":
+        return require("../../assets/starships/tieadvancedx1.jpg");
+      case "Executor":
+        return require("../../assets/starships/executor.jpg");
+      case "Rebel transport":
+        return require("../../assets/starships/rebeltransport.jpg");
 
-export const StarshipDetailScreen = ({ starshipName }) => {
+      default:
+        break;
+    }
+  }
+
   return (
     <SafeAreaView style={styles.safeContainer}>
       <View style={styles.container}>
-        <Image
-          style={styles.tinyLogo}
-          source={require("../../assets/starships/CR90corvette.jpg")}
-        />
-        <Text style={styles.model}>{starshipName}</Text>
+        <Image style={styles.tinyLogo} source={imageMap(x)} />
+        <Text style={styles.model}>{item.name}</Text>
+        <Text style={styles.manufacturer}>{item.manufacturer}</Text>
+        <Text style={styles.iconText}>
+          ⭐ Rating :{item.hyperdrive_rating}/5.0
+        </Text>
+        <Text style={styles.iconText2}>
+          🚀 Max Speed :{item.max_atmosphering_speed}
+        </Text>
+        <Text style={styles.simpleText}>👨‍🚀 Crew: {item.crew}</Text>
+        <Text style={styles.simpleText}>💺 Passengers: {item.passengers}</Text>
+        <Text style={styles.simpleText}>
+          🍪 Consumables: {item.consumables}
+        </Text>
+        <Text style={styles.simpleText}>
+          🧳 cargo_capacity: {item.cargo_capacity}
+        </Text>
       </View>
     </SafeAreaView>
   );
@@ -33,25 +74,37 @@ const styles = StyleSheet.create({
     height: 250,
     alignSelf: "center",
   },
-  item: {
-    backgroundColor: "#ffffff",
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: "auto",
-  },
   model: {
     color: "black",
     fontSize: 25,
     fontWeight: "bold",
-    textAlign: "center",
+    textAlign: "left",
+    marginLeft: 40,
   },
   manufacturer: {
     color: "black",
-    fontSize: 15,
-    fontWeight: "normal",
+    fontSize: 18,
+    textAlign: "left",
+    marginLeft: 40,
   },
-  hyperdrive_rating: {
+  iconText: {
     color: "black",
-    fontSize: 15,
+    fontSize: 25,
+    textAlign: "left",
+    marginLeft: 40,
+    marginTop: 40,
+  },
+  iconText2: {
+    color: "black",
+    fontSize: 25,
+    textAlign: "left",
+    marginLeft: 40,
+    marginBottom: 40,
+  },
+  simpleText: {
+    color: "black",
+    fontSize: 25,
+    textAlign: "left",
+    marginLeft: 40,
   },
 });
